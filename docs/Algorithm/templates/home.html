@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}SmartBay Parking System{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>SmartBay Parking System</h1>
+  <p>A modern, web-based parking management system built for automated entry, exit and billing.</p>
+  <div class="home-links">
+    <a href="{{ url_for('slot.display_board') }}">🅿️<br>Live Slot Display</a>
+    <a href="{{ url_for('entry.entry_view') }}">🚗<br>Vehicle Entry</a>
+    <a href="{{ url_for('exit.exit_view') }}">🚪<br>Vehicle Exit &amp; Pay</a>
+    <a href="{{ url_for('report.admin_dashboard') }}">📊<br>Admin Dashboard</a>
+  </div>
+</div>
+{% endblock %}

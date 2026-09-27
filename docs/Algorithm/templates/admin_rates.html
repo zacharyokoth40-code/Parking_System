@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Manage Rates{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Manage Parking Rates</h1>
+  <p>Change tier amounts anytime — no code change or redeploy needed.</p>
+  <table>
+    <tr><th>Tier</th><th>Up to (minutes)</th><th>Amount (KShs.)</th><th>Update</th></tr>
+    {% for tier in tiers %}
+    <tr>
+      <td>{{ tier.tier_order }}</td>
+      <td>{{ tier.max_minutes if tier.max_minutes is not none else 'Above previous tier' }}</td>
+      <td>{{ tier.amount }}</td>
+      <td>
+        <form method="POST" style="display:flex; gap:8px;">
+          <input type="hidden" name="rate_id" value="{{ tier.rate_id }}">
+          <input type="number" step="0.01" name="amount" value="{{ tier.amount }}" style="width:100px;">
+          <button type="submit">Save</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Admin Dashboard</h1>
+  <a class="btn" href="{{ url_for('report.manage_rates') }}">Manage Rates</a>
+  <a class="btn" href="{{ url_for('report.export_csv') }}">Export Reconciliation CSV</a>
+
+  <h2>Revenue Summary (confirmed payments)</h2>
+  <table>
+    <tr><th>Method</th><th>Transactions</th><th>Gross (KShs.)</th><th>VAT Portion (KShs.)</th></tr>
+    {% for row in summary.by_method %}
+    <tr><td>{{ row.method }}</td><td>{{ row.txn_count }}</td><td>{{ row.gross }}</td><td>{{ row.vat }}</td></tr>
+    {% endfor %}
+    <tr><td><b>Total</b></td><td></td><td><b>{{ summary.total_gross }}</b></td><td><b>{{ summary.total_vat }}</b></td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>Audit Trail (latest 100)</h2>
+  <table>
+    <tr><th>Receipt</th><th>Plate</th><th>Amount</th><th>Method</th><th>Status</th><th>Timestamp</th></tr>
+    {% for t in trail %}
+    <tr>
+      <td>{{ t.receipt_no or '-' }}</td><td>{{ t.plate_number }}</td><td>{{ t.amount }}</td>
+      <td>{{ t.method }}</td><td>{{ t.status }}</td><td>{{ t.timestamp }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

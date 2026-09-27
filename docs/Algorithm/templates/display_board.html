@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Live Slot Availability{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Live Slot Availability</h1>
+  <div class="counts">
+    <div>Total: <span id="total">--</span></div>
+    <div>Free: <span id="free" class="free">--</span></div>
+    <div>Occupied: <span id="occupied" class="occ">--</span></div>
+  </div>
+  <div class="slot-grid" id="slot-grid"></div>
+</div>
+<script src="{{ url_for('static', filename='js/display.js') }}"></script>
+{% endblock %}

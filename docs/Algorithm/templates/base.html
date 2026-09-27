@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}SmartBay Parking{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<nav class="navbar">
+  <a href="{{ url_for('home') }}" class="brand">SmartBay Parking</a>
+  <div class="links">
+    <a href="{{ url_for('slot.display_board') }}">Display Board</a>
+    <a href="{{ url_for('entry.entry_view') }}">Entry</a>
+    <a href="{{ url_for('exit.exit_view') }}">Exit</a>
+    <a href="{{ url_for('report.admin_dashboard') }}">Admin</a>
+  </div>
+</nav>
+<main class="container">
+{% block content %}{% endblock %}
+</main>
+</body>
+</html>

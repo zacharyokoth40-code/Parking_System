@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Vehicle Exit{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Vehicle Exit</h1>
+  <form method="POST">
+    <label>Number Plate</label>
+    <input type="text" name="plate_number" placeholder="e.g. KDA 123X" required>
+    <button type="submit">Get Fee Quote</button>
+  </form>
+
+  {% if quote %}
+  <div class="ticket" id="quote-box"
+       data-entry-id="{{ quote.entry_id }}" data-amount="{{ quote.amount_due }}">
+    <h2>Fee Quote</h2>
+    <p><b>Plate:</b> {{ quote.plate_number }}</p>
+    <p><b>Duration:</b> {{ quote.duration_minutes }} minutes</p>
+    <p><b>Amount Due:</b> KShs. {{ quote.amount_due }}</p>
+
+    <label>Payment Method</label>
+    <select id="method">
+      <option value="MPESA">M-Pesa</option>
+      <option value="CARD">Card</option>
+      <option value="CASH">Cash</option>
+    </select>
+    <button id="pay-btn" type="button">Pay &amp; Open Barrier</button>
+    <div id="pay-result"></div>
+  </div>
+  {% endif %}
+</div>
+<script src="{{ url_for('static', filename='js/exit_payment.js') }}"></script>
+{% endblock %}

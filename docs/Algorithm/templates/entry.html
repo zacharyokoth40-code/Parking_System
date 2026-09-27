@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Vehicle Entry{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Vehicle Entry</h1>
+  <form method="POST">
+    <label>Number Plate</label>
+    <input type="text" name="plate_number" placeholder="e.g. KDA 123X" required>
+    <button type="submit">Record Arrival</button>
+  </form>
+
+  {% if ticket %}
+  <div class="ticket">
+    <h2>Entry Ticket</h2>
+    <p><b>Plate:</b> {{ ticket.plate_number }}</p>
+    <p><b>Bay Allocated:</b> {{ ticket.bay_number }}</p>
+    <p><b>Entry Time:</b> {{ ticket.entry_time }}</p>
+    <p><b>Ticket / Entry ID:</b> {{ ticket.entry_id }}</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
